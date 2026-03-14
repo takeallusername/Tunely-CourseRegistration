@@ -5,10 +5,11 @@ COPY gradlew .
 COPY build.gradle .
 COPY settings.gradle .
 COPY src src
-RUN ./gradlew clean bootJar -x check -x test
+RUN ./gradlew clean bootJar -x check -x test && \
+    ls -la /app/build/libs/
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY --from=build /app/build/libs/Tunely-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
