@@ -42,5 +42,3 @@ API_SPEC.md
 ### Backend Plan ###
 BACKEND_PLAN.md
 
-### Application Config ###
-src/main/resources/application.yml
